@@ -109,32 +109,49 @@ function renderKecamatan(data) {
   });
 }
 
-$("select[id=selectTowerOwner], select[id=selectKecamatan]").change(
-  "change",
-  function (e) {
-    let towerOwner = $("#selectTowerOwner").find(":selected").val();
-    let kec = $("#selectKecamatan").find(":selected").val();
-    let d = data.filter((obj) =>  obj.kecamatan.includes(kec) && obj.pemilik_menara.includes(towerOwner));
-    renderMapInternal(d);
-  }
-);
+$("#selectKecamatan").on("change", function () {
+  let kec = $(this).find(":selected").val();
+  let da = data.filter((obj) => obj.kecamatan == kec);
+  const kel = [...new Set(da.map((item) => item.kelurahan))].sort();
+  $("#selectKelurahan")
+    .find("option")
+    .remove()
+    .end()
+    .append('<option value=""></option>')
+    .val("");
+
+  $.each(kel, function (i, item) {
+    var option = new Option(item, item);
+    $("#selectKelurahan").append($(option));
+  });
+});
+
+
+
+$(
+  "select[id=selectTowerOwner], select[id=selectKecamatan], select[id=selectKelurahan]"
+).change("change", function (e) {
+  let towerOwner = $("#selectTowerOwner").find(":selected").val();
+  let kec = $("#selectKecamatan").find(":selected").val();
+  let kel = $("#selectKelurahan").find(":selected").val();
+  let d = data.filter(
+    (obj) =>
+      obj.kecamatan.includes(kec) &&
+      obj.kelurahan.includes(kel) &&
+      obj.pemilik_menara.includes(towerOwner)
+  );
+  renderMapInternal(d);
+});
 
 $("input[type=radio][name=radioTahun]").change(function () {
   data = getData(this.value);
   renderOptionTowerOwner(data);
   renderKecamatan(data);
+  $("#selectKelurahan")
+    .find("option")
+    .remove()
+    .end()
+    .append('<option value=""></option>')
+    .val("");
   renderMapInternal(data);
 });
-
-
-// var tempResult = {}
-// for(let { Kecamatan, Kelurahan } of data2016)
-//   tempResult[Kelurahan] = {
-//       Kelurahan,
-//       Kecamatan,
-//       count: tempResult[Kelurahan] ? tempResult[Kelurahan].count + 1 : 1
-//   }
-
-// let result = Object.values(tempResult)
-
-// console.log(result.sort((a, b) => a.Kelurahan.localeCompare(b.Kelurahan)))
