@@ -79,48 +79,53 @@ function getData(tahun) {
   return d;
 }
 function renderOptionTowerOwner(data) {
-  const pemilik_menara = [...new Set(data.map((item) => item.pemilik_menara))];
+  const pemilik_menara = [
+    ...new Set(data.map((item) => item.pemilik_menara)),
+  ].sort();
   $("#selectTowerOwner")
     .find("option")
     .remove()
     .end()
-    .append('<option value="-">-</option>')
-    .val("-");
+    .append('<option value=""></option>')
+    .val("");
 
   $.each(pemilik_menara, function (i, item) {
     var option = new Option(item, item);
     $("#selectTowerOwner").append($(option));
   });
 }
+function renderKecamatan(data) {
+  const kec = [...new Set(data.map((item) => item.kecamatan))].sort();
+  $("#selectKecamatan")
+    .find("option")
+    .remove()
+    .end()
+    .append('<option value=""></option>')
+    .val("");
 
-$("select").on("change", function (e) {
-  if (this.value !== "-") {
-    renderMapInternal(
-      data.filter((obj) => {
-        return obj.pemilik_menara === this.value;
-      })
-    );
-  } else {
-    data = getData($('input[name="radioTahun"]:checked').val());
-    renderMapInternal(data);
+  $.each(kec, function (i, item) {
+    var option = new Option(item, item);
+    $("#selectKecamatan").append($(option));
+  });
+}
+
+$("select[id=selectTowerOwner], select[id=selectKecamatan]").change(
+  "change",
+  function (e) {
+    let towerOwner = $("#selectTowerOwner").find(":selected").val();
+    let kec = $("#selectKecamatan").find(":selected").val();
+    let d = data.filter((obj) =>  obj.kecamatan.includes(kec) && obj.pemilik_menara.includes(towerOwner));
+    renderMapInternal(d);
   }
-});
+);
 
 $("input[type=radio][name=radioTahun]").change(function () {
   data = getData(this.value);
   renderOptionTowerOwner(data);
+  renderKecamatan(data);
   renderMapInternal(data);
 });
 
-// for (let data of data2016.slice(0,5)) {
-//     console.log(data);
-// }
-
-// for (let data of data2016.filter((obj) => {
-//   return obj.Kelurahan === "-";
-// })) {
-//   console.log(data);
-// }
 
 // var tempResult = {}
 // for(let { Kecamatan, Kelurahan } of data2016)
