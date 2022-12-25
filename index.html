@@ -15,16 +15,28 @@
 
 <body>
     <h1>Data Menara Telekomunikasi di Kota Bandung</h1>
-        <input type="radio" id="r2016" name="rTahun" value="r2016">
-        <label for="r2016">2016</label><br>
-        <input type="radio" id="r2017" name="rTahun" value="r2017">
-        <label for="r2017">2017</label><br>
-        <input type="radio" id="r2018" name="rTahun" value="r2018">
-        <label for="r2018">2018</label><br>
-        <input type="radio" id="r2019" name="rTahun" value="r2019">
-        <label for="r2019">2019</label><br>
-        <input type="radio" id="r2020" name="rTahun" value="r2020">
-        <label for="r2020">2020</label><br>
+    <table border="1">
+        <tr>
+            <td style="width: 200px;">
+                <input type="radio" id="r2016" name="radioTahun" value="r2016">
+                <label for="r2016">2016</label><br>
+                <input type="radio" id="r2017" name="radioTahun" value="r2017">
+                <label for="r2017">2017</label><br>
+                <input type="radio" id="r2018" name="radioTahun" value="r2018">
+                <label for="r2018">2018</label><br>
+                <input type="radio" id="r2019" name="radioTahun" value="r2019">
+                <label for="r2019">2019</label><br>
+                <input type="radio" id="r2020" name="radioTahun" value="r2020">
+                <label for="r2020">2020</label><br>
+            </td>
+            <td valign="top">
+                <label for="selectTowerOwner">Pemilik Menara</label>
+                <select id="selectTowerOwner" name="selectTowerOwner">
+                    <option></option>
+                </select>
+            </td>
+        </tr>
+    </table>
     <div id="map" style="width: 800px; height: 420px; border: 10px solid #AAA;"></div>
 
     <script type="text/javascript" src="data/data_menara_telekomunikasi_2016.js"></script>

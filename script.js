@@ -26,7 +26,11 @@ function renderMapInternal(data_menara) {
     let pemilik_menara = data.pemilik_menara;
     let latitude = data.latitude;
     let longitude = data.longitude;
-    if (latitude != null && longitude != null) {
+    if (
+      latitude != null &&
+      longitude != null &&
+      (latitude !== "-" || longitude !== "-")
+    ) {
       marker = L.marker([latitude, longitude], {
         icon: icon,
       }).addTo(layerGroup);
@@ -59,26 +63,54 @@ function drawCountyBoundary(county, state) {
 
 drawCountyBoundary("Bandung", "Id");
 
-$("input[type=radio][name=rTahun]").change(function () {
-  if (this.value == "r2016") {
-    data = data_menara_telekomunikasi_2016;
-  } else if (this.value == "r2017") {
-    data = data_menara_telekomunikasi_2017;
-  } else if (this.value == "r2018") {
-    data = data_menara_telekomunikasi_2018;
-  } else if (this.value == "r2019") {
-    data = data_menara_telekomunikasi_2019;
-  } else if (this.value == "r2020") {
-    data = data_menara_telekomunikasi_2020;
+function getData(tahun) {
+  let d = [];
+  if (tahun == "r2016") {
+    d = data_menara_telekomunikasi_2016;
+  } else if (tahun == "r2017") {
+    d = data_menara_telekomunikasi_2017;
+  } else if (tahun == "r2018") {
+    d = data_menara_telekomunikasi_2018;
+  } else if (tahun == "r2019") {
+    d = data_menara_telekomunikasi_2019;
+  } else if (tahun == "r2020") {
+    d = data_menara_telekomunikasi_2020;
   }
-  console.log(data.length);
-  renderMapInternal(data.slice(0, 5));
+  return d;
+}
+function renderOptionTowerOwner(data) {
+  const pemilik_menara = [...new Set(data.map((item) => item.pemilik_menara))];
+  $("#selectTowerOwner")
+    .find("option")
+    .remove()
+    .end()
+    .append('<option value="-">-</option>')
+    .val("-");
+
+  $.each(pemilik_menara, function (i, item) {
+    var option = new Option(item, item);
+    $("#selectTowerOwner").append($(option));
+  });
+}
+
+$("select").on("change", function (e) {
+  if (this.value !== "-") {
+    renderMapInternal(
+      data.filter((obj) => {
+        return obj.pemilik_menara === this.value;
+      })
+    );
+  } else {
+    data = getData($('input[name="radioTahun"]:checked').val());
+    renderMapInternal(data);
+  }
 });
 
-
-
-
-
+$("input[type=radio][name=radioTahun]").change(function () {
+  data = getData(this.value);
+  renderOptionTowerOwner(data);
+  renderMapInternal(data);
+});
 
 // for (let data of data2016.slice(0,5)) {
 //     console.log(data);
