@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
-    <div id="map" style="width: 1200px; height: 640px; border: 10px solid #AAA;"></div>
-    
+    <h1>Data Menara Telekomunikasi di Kota Bandung</h1>
+        <input type="radio" id="r2016" name="rTahun" value="r2016">
+        <label for="r2016">2016</label><br>
+        <input type="radio" id="r2017" name="rTahun" value="r2017">
+        <label for="r2017">2017</label><br>
+        <input type="radio" id="r2018" name="rTahun" value="r2018">
+        <label for="r2018">2018</label><br>
+        <input type="radio" id="r2019" name="rTahun" value="r2019">
+        <label for="r2019">2019</label><br>
+        <input type="radio" id="r2020" name="rTahun" value="r2020">
+        <label for="r2020">2020</label><br>
+    <div id="map" style="width: 800px; height: 420px; border: 10px solid #AAA;"></div>
+
     <script type="text/javascript" src="data/data_menara_telekomunikasi_2016.js"></script>
     <script type="text/javascript" src="data/data_menara_telekomunikasi_2017.js"></script>
     <script type="text/javascript" src="data/data_menara_telekomunikasi_2018.js"></script>
     <script type="text/javascript" src="data/data_menara_telekomunikasi_2019.js"></script>
     <script type="text/javascript" src="data/data_menara_telekomunikasi_2020.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin="anonymous"></script>
     <script type='text/javascript' src='script.js'></script>
 </body>
+
 </html>
