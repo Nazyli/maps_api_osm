@@ -159,22 +159,28 @@ $("#selectKecamatan").on("change", function () {
 });
 
 
+// $("#towerAddress").keyup(function(event) {
+//   text = $(this).val();
+//   console.log(text);
+// });
 
 $(
-  "select[id=selectTowerOwner], select[id=selectKecamatan], select[id=selectKelurahan], select[id=towerHeight], select[id=towerStructure]"
-).change("change", function (e) {
+  "select[id=selectTowerOwner], select[id=selectKecamatan], select[id=selectKelurahan], select[id=towerHeight], select[id=towerStructure], input[id=towerAddress]"
+).on('keyup change', function(e) {
   let towerOwner = $("#selectTowerOwner").find(":selected").val();
   let kec = $("#selectKecamatan").find(":selected").val();
   let kel = $("#selectKelurahan").find(":selected").val();
   let th = $("#towerHeight").find(":selected").val().toString();
   let ts = $("#towerStructure").find(":selected").val();
+  let address = $("#towerAddress").val();
   let d = data.filter(
     (obj) =>
       obj.kecamatan.includes(kec) &&
       obj.kelurahan.includes(kel) &&
       obj.pemilik_menara.includes(towerOwner) &&
       obj.tower_height.toString().includes(th) &&
-      (ts != "" ? obj.struktur_tower == ts : true)
+      (ts != "" ? obj.struktur_tower == ts : true) && 
+      obj.lokasi_menara.toLowerCase().includes(address.toLowerCase())
   );
   renderMapInternal(d);
 });
