@@ -109,6 +109,24 @@ function renderKecamatan(data) {
   });
 }
 
+function towerHeight(data) {
+  const th = [...new Set(data.map((item) => item.tower_height))];
+  th.sort(function(a, b) {
+    return a - b;
+  });
+  $("#towerHeight")
+    .find("option")
+    .remove()
+    .end()
+    .append('<option value=""></option>')
+    .val("");
+
+  $.each(th, function (i, item) {
+    var option = new Option(item, item);
+    $("#towerHeight").append($(option));
+  });
+}
+
 $("#selectKecamatan").on("change", function () {
   let kec = $(this).find(":selected").val();
   let da = data.filter((obj) => obj.kecamatan == kec);
@@ -129,16 +147,19 @@ $("#selectKecamatan").on("change", function () {
 
 
 $(
-  "select[id=selectTowerOwner], select[id=selectKecamatan], select[id=selectKelurahan]"
+  "select[id=selectTowerOwner], select[id=selectKecamatan], select[id=selectKelurahan], select[id=towerHeight]"
 ).change("change", function (e) {
   let towerOwner = $("#selectTowerOwner").find(":selected").val();
   let kec = $("#selectKecamatan").find(":selected").val();
   let kel = $("#selectKelurahan").find(":selected").val();
+  let th = $("#towerHeight").find(":selected").val().toString();
+  console.log(th)
   let d = data.filter(
     (obj) =>
       obj.kecamatan.includes(kec) &&
       obj.kelurahan.includes(kel) &&
-      obj.pemilik_menara.includes(towerOwner)
+      obj.pemilik_menara.includes(towerOwner) &&
+      obj.tower_height.toString().includes(th)
   );
   renderMapInternal(d);
 });
@@ -154,4 +175,5 @@ $("input[type=radio][name=radioTahun]").change(function () {
     .append('<option value=""></option>')
     .val("");
   renderMapInternal(data);
+  towerHeight(data);
 });
