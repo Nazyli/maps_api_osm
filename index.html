@@ -15,43 +15,53 @@
 
 <body>
     <h1>Data Menara Telekomunikasi di Kota Bandung</h1>
-    <table border="1">
+    <table>
         <tr>
-            <td style="width: 200px;">
-                <input type="radio" id="r2016" name="radioTahun" value="r2016">
-                <label for="r2016">2016</label><br>
+            <td>Tahun</td>
+            <td colspan="3"><input type="radio" id="r2016" name="radioTahun" value="r2016">
+                <label for="r2016">2016</label> |
                 <input type="radio" id="r2017" name="radioTahun" value="r2017">
-                <label for="r2017">2017</label><br>
+                <label for="r2017">2017</label> |
                 <input type="radio" id="r2018" name="radioTahun" value="r2018">
-                <label for="r2018">2018</label><br>
+                <label for="r2018">2018</label> |
                 <input type="radio" id="r2019" name="radioTahun" value="r2019">
-                <label for="r2019">2019</label><br>
+                <label for="r2019">2019</label> |
                 <input type="radio" id="r2020" name="radioTahun" value="r2020">
-                <label for="r2020">2020</label><br>
-            </td>
-            <td valign="top">
-                <label for="selectTowerOwner">Pemilik Menara</label>
-                <select id="selectTowerOwner" name="selectTowerOwner">
-                    <option></option>
-                </select><br>
-                <label for="selectKecamatan">Kecamatan</label>
-                <select id="selectKecamatan" name="selectKecamatan">
-                    <option></option>
-                </select><br>
-                <label for="selectKelurahan">Kelurahan</label>
-                <select id="selectKelurahan" name="selectKelurahan">
-                    <option></option>
-                </select><br>
-                <label for="towerHeight">Tinggi Tower</label>
-                <select id="towerHeight" name="towerHeight">
-                    <option></option>
-                </select><br>
-                <label for="towerStructure">Struktur Tower</label>
-                <select id="towerStructure" name="towerStructure">
+                <label for="r2020">2020</label> |</td>
+        </tr>
+        <tr>
+            <td>Pemilik Menara</td>
+            <td colspan="3"><select style="min-width: 150px;" id="selectTowerOwner" name="selectTowerOwner">
+                <option></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Kecamatan</td>
+            <td><select style="min-width: 150px;" id="selectKecamatan" name="selectKecamatan">
+                <option></option>
+            </select></td>
+            <td>Kelurahan</td>
+            <td><select style="min-width: 150px;" id="selectKelurahan" name="selectKelurahan">
+                <option></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Tinggi Tower</td>
+            <td colspan="3"><select style="min-width: 150px;" id="towerHeight" name="towerHeight">
+                <option></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Struktur Tower</td>
+            <td colspan="3">
+                <select style="min-width: 150px;" id="towerStructure" name="towerStructure">
                     <option></option>
                 </select>
-                <br>
-                <label for="towerAddress">Alamat</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Alamat Tower</td>
+            <td colspan="3">
                 <input type="text" name="towerAddress" id="towerAddress">
             </td>
         </tr>
