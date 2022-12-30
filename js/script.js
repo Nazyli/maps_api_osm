@@ -2,6 +2,8 @@ let data = [];
 let map = L.map("map").setView([-6.904744, 107.63981], 12);
 map.attributionControl.setPrefix("");
 let layerGroup = L.layerGroup().addTo(map);
+let sidebar = L.control.sidebar('sidebar').addTo(map);
+
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
