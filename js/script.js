@@ -31,7 +31,7 @@ $(function () {
       columnDefs: [{
         "defaultContent": "-",
         "targets": "_all"
-      }]
+      }],
     });
   $('#tableData').removeClass('display').addClass('table table-striped table-bordered');
 
@@ -62,10 +62,9 @@ function renderMapInternal(data_menara) {
     layerGroup.clearLayers();
   }
   let marker = null;
-  for (let data of data_menara) {
-    let pemilik_menara = data.pemilik_menara;
-    let latitude = data.latitude;
-    let longitude = data.longitude;
+  for (let d of data_menara) {
+    let latitude = d.latitude;
+    let longitude = d.longitude;
     if (
       latitude != null &&
       longitude != null &&
@@ -74,11 +73,149 @@ function renderMapInternal(data_menara) {
       marker = L.marker([latitude, longitude], {
         icon: icon,
       }).addTo(layerGroup);
-      marker.bindPopup(pemilik_menara);
+      marker.bindPopup(genereteContent(d));
     }
   }
 }
 
+function genereteContent(menara) {
+  let { pemilik_menara, tower_height, struktur_tower, kecamatan, kelurahan, lokasi_menara, latitude, longitude, 
+    id_site, nama_site, alamat_perusahaan_menara,
+    id_survey, operator, building_heights, kategori, tahun_pendirian, kelistrikan, status_lahan, keterangan_lain_lain,
+    data_imb} = menara;
+  var additional = "";
+  if (typeof id_site !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">ID Site</div>
+                `+ id_site + `
+            </div>
+        </li>`;
+  }
+  if (typeof nama_site !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Nama Site</div>
+                `+ nama_site + `
+            </div>
+        </li>`;
+  }
+  if (typeof alamat_perusahaan_menara !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Alamat Perusahaan</div>
+                `+ alamat_perusahaan_menara + `
+            </div>
+        </li>`;
+  }
+  if (typeof id_survey !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">ID Survey</div>
+                `+ id_survey + `
+            </div>
+        </li>`;
+  }
+  if (typeof operator !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Operator</div>
+                `+ operator + `
+            </div>
+        </li>`;
+  }
+  if (typeof building_heights !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Building Heights</div>
+                `+ building_heights + `
+            </div>
+        </li>`;
+  }
+  if (typeof kategori !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Kategori</div>
+                `+ kategori + `
+            </div>
+        </li>`;
+  }
+  if (typeof tahun_pendirian !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Tahun Pendirian</div>
+                `+ tahun_pendirian + `
+            </div>
+        </li>`;
+  }
+  if (typeof status_lahan !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Status Lahan</div>
+                `+ status_lahan + `
+            </div>
+        </li>`;
+  }
+  if (typeof kelistrikan !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Kelistrikan</div>
+                `+ kelistrikan + `
+            </div>
+        </li>`;
+  }
+  if (typeof keterangan_lain_lain !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Keterangan Lain Lain</div>
+                `+ keterangan_lain_lain + `
+            </div>
+        </li>`;
+  }
+  if (typeof data_imb !== 'undefined') {
+    additional += `<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">Data IMB</div>
+                `+ data_imb + `
+            </div>
+        </li>`;
+  }
+
+  var content = `
+  <div class="card" style="width: 18rem; border: none;">
+  <div class="card-body" style="padding:0;">
+      <h5 class="card-title" style="font-size:16px; font-weight:bolder;">`+ pemilik_menara + `</h5>
+      <h6 class="card-subtitle mb-2 text-muted" style="font-size:12px; font-weight:bold;>`+ lokasi_menara + `</h6>
+      <p class="card-text">Kec. `+ kecamatan + `, Kel. ` + kelurahan + `</p>
+      <ol class="list-group list-group-numbered">
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                  <div class="fw-bold">Struktur Tower</div>
+                  `+ struktur_tower + `
+              </div>
+          </li>
+          <li
+              class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                  <div class="fw-bold">Tinggi Tower</div>
+                  `+ tower_height + `
+              </div>
+          </li>
+          `+ additional + `
+      </ol>
+      <div class="row">
+          <div class="col-6"><p class="mb-1">Latitude</p>
+              <small class="text-muted">`+ latitude + `</small></div>
+          <div class="col-6">
+              <p class="mb-1">Longitude</p>
+              <small class="text-muted">`+ longitude + `</small>
+          </div>
+      </div>
+  </div>
+  </div>`;
+  return content;
+
+}
 
 function renderDatatable(data_menara) {
   $('#tableData').dataTable().fnClearTable();
