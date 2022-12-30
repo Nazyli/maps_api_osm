@@ -3,42 +3,76 @@ body {
    margin: 0;
 }
 
-html, body, #map {
+html,
+body,
+#map {
    height: 100%;
    /* font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif; */
 }
 
-.sidebar-content, .sidebar-tabs {
-   background: white; background: rgba(255,255,255,0.75);
+.sidebar-content,
+.sidebar-tabs {
+   background: white;
+   background: rgba(255, 255, 255, 0.75);
 }
-.sidebar-header, .sidebar-tabs>li.active, .sidebar-tabs>ul>li.active  {
-   background: #0984e3; background: rgba(9, 132, 227, 0.75);
+.sidebar-tabs {
+   background: rgba(255, 255, 255, 0.9);
 }
+.sidebar-header,
+.sidebar-tabs>li.active,
+.sidebar-tabs>ul>li.active {
+   background: #0984e3;
+   background: rgba(9, 132, 227, 0.75);
+}
+
+.table-custom {
+   font-size: 10px;
+   background: white;
+   background: rgba(255, 255, 255, 0.85);
+}
+
+.dataTables_info {
+   font-size: 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+   font-weight: bold;
+   font-size: 10px;
+   /* min-width: 0.2em; !important */
+}
+table.dataTable.dtr-inline.collapsed tbody td:first-child:before, table.dataTable.dtr-inline.collapsed tbody th:first-child:before{
+   top:2px;
+   background: #0984e3;
+   background: rgba(9, 132, 227, 0.75);
+   border: 1px solid white;
+}
+
 .text {
    font-style: italic;
    color: #AAA;
 }
+
 .marker-pin {
-  width: 30px;
-  height: 30px;
-  border-radius: 50% 50% 50% 0;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 50%;
-  top: 50%;
-  margin: -15px 0 0 -15px;
-  background-color:#2980b9;
+   width: 30px;
+   height: 30px;
+   border-radius: 50% 50% 50% 0;
+   position: absolute;
+   transform: rotate(-45deg);
+   left: 50%;
+   top: 50%;
+   margin: -15px 0 0 -15px;
+   background-color: #2980b9;
 }
 
 .marker-pin::after {
-    content: '';
-    width: 24px;
-    height: 24px;
-    margin: 3px 0 0 3px;
-    background: #fff;
-    position: absolute;
-    border-radius: 50%;
- }
+   content: '';
+   width: 24px;
+   height: 24px;
+   margin: 3px 0 0 3px;
+   background: #fff;
+   position: absolute;
+   border-radius: 50%;
+}
 
 .custom-div-icon i {
    position: absolute;

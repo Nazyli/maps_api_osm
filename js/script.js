@@ -5,6 +5,44 @@ let layerGroup = L.layerGroup().addTo(map);
 let sidebar = L.control.sidebar('sidebar').addTo(map);
 
 
+
+$(function () {
+  $.fn.DataTable.ext.pager.numbers_length = 5;
+  $('#tableData')
+    .DataTable({
+      searching: false,
+      info: true,
+      lengthChange: false,
+      pageLength: 5,
+      pagingType: "simple",
+      // pagingType: "first_last_numbers",
+      responsive: true,
+      data: data,
+      columns: [
+        { data: 'pemilik_menara' },
+        { data: 'tower_height' },
+        { data: 'struktur_tower' },
+        { data: 'kecamatan' },
+        { data: 'kelurahan' },
+        { data: 'lokasi_menara' },
+        { data: 'latitude' },
+        { data: 'longitude' },
+      ],
+      columnDefs: [{
+        "defaultContent": "-",
+        "targets": "_all"
+      }]
+    });
+  $('#tableData').removeClass('display').addClass('table table-striped table-bordered');
+
+  let tahun = $("#dataTahun").find(":selected").val();
+  getData(tahun);
+});
+
+
+
+
+// Maps
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
@@ -41,6 +79,11 @@ function renderMapInternal(data_menara) {
   }
 }
 
+
+function renderDatatable(data_menara) {
+  $('#tableData').dataTable().fnClearTable();
+  $('#tableData').dataTable().fnAddData(data_menara);
+}
 function polystyle(feature) {
   return {
     weight: 2,
@@ -65,21 +108,16 @@ function drawCountyBoundary(county, state) {
 
 drawCountyBoundary("Bandung", "Id");
 
-$(function() {
-  let tahun = $("#dataTahun").find(":selected").val();
-  getData(tahun);
-});
-
 function getData(tahun) {
   let d = [];
-  if (tahun == ""){
+  if (tahun == "") {
     $("#selectTowerOwner").prop('disabled', 'disabled');
     $("#towerStructure").prop('disabled', 'disabled');
     $("#towerHeight").prop('disabled', 'disabled');
     $("#selectKecamatan").prop('disabled', 'disabled');
     $("#selectKelurahan").prop('disabled', 'disabled');
     $('#towerAddress').prop('disabled', true);
-  }else {
+  } else {
     $("#selectTowerOwner").prop('disabled', false);
     $("#towerStructure").prop('disabled', false);
     $("#towerHeight").prop('disabled', false);
@@ -134,7 +172,7 @@ function renderKecamatan(data) {
 
 function towerHeight(data) {
   const th = [...new Set(data.map((item) => item.tower_height))];
-  th.sort(function(a, b) {
+  th.sort(function (a, b) {
     return a - b;
   });
   $("#towerHeight")
@@ -192,7 +230,7 @@ $("#selectKecamatan").on("change", function () {
 
 $(
   "select[id=selectTowerOwner], select[id=selectKecamatan], select[id=selectKelurahan], select[id=towerHeight], select[id=towerStructure], textarea[id=towerAddress]"
-).on('keyup change', function(e) {
+).on('keyup change', function (e) {
   let towerOwner = $("#selectTowerOwner").find(":selected").val();
   let kec = $("#selectKecamatan").find(":selected").val();
   let kel = $("#selectKelurahan").find(":selected").val();
@@ -201,14 +239,15 @@ $(
   let address = $("#towerAddress").val();
   let d = data.filter(
     (obj) =>
-      obj.kecamatan.includes(kec) &&
-      obj.kelurahan.includes(kel) &&
-      obj.pemilik_menara.includes(towerOwner) &&
-      obj.tower_height.toString().includes(th) &&
-      (ts != "" ? obj.struktur_tower == ts : true) && 
+      (kec != "" ? obj.kecamatan == kec : true) &&
+      (kel != "" ? obj.kelurahan == kel : true) &&
+      (towerOwner != "" ? obj.pemilik_menara == towerOwner : true) &&
+      (th != "" ? obj.tower_height.toString() == th : true) &&
+      (ts != "" ? obj.struktur_tower == ts : true) &&
       obj.lokasi_menara.toLowerCase().includes(address.toLowerCase())
   );
   renderMapInternal(d);
+  renderDatatable(d);
 });
 
 $("select[id=dataTahun]").change(function () {
@@ -224,4 +263,5 @@ $("select[id=dataTahun]").change(function () {
   towerHeight(data);
   towerStructure(data);
   renderMapInternal(data);
+  renderDatatable(data);
 });
