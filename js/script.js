@@ -1,5 +1,5 @@
 let data = [];
-let map = L.map("map").setView([-6.904744, 107.63981], 12);
+let map = L.map("map").setView([-6.904744, 107.61981], 13);
 map.attributionControl.setPrefix("");
 let layerGroup = L.layerGroup().addTo(map);
 let sidebar = L.control.sidebar('sidebar').addTo(map);
@@ -65,17 +65,38 @@ function drawCountyBoundary(county, state) {
 
 drawCountyBoundary("Bandung", "Id");
 
+$(function() {
+  let tahun = $("#dataTahun").find(":selected").val();
+  getData(tahun);
+});
+
 function getData(tahun) {
   let d = [];
-  if (tahun == "r2016") {
+  if (tahun == ""){
+    $("#selectTowerOwner").prop('disabled', 'disabled');
+    $("#towerStructure").prop('disabled', 'disabled');
+    $("#towerHeight").prop('disabled', 'disabled');
+    $("#selectKecamatan").prop('disabled', 'disabled');
+    $("#selectKelurahan").prop('disabled', 'disabled');
+    $('#towerAddress').prop('disabled', true);
+  }else {
+    $("#selectTowerOwner").prop('disabled', false);
+    $("#towerStructure").prop('disabled', false);
+    $("#towerHeight").prop('disabled', false);
+    $("#selectKecamatan").prop('disabled', false);
+    $('#towerAddress').prop('disabled', false);
+
+  }
+
+  if (tahun == "2016") {
     d = data_menara_telekomunikasi_2016;
-  } else if (tahun == "r2017") {
+  } else if (tahun == "2017") {
     d = data_menara_telekomunikasi_2017;
-  } else if (tahun == "r2018") {
+  } else if (tahun == "2018") {
     d = data_menara_telekomunikasi_2018;
-  } else if (tahun == "r2019") {
+  } else if (tahun == "2019") {
     d = data_menara_telekomunikasi_2019;
-  } else if (tahun == "r2020") {
+  } else if (tahun == "2020") {
     d = data_menara_telekomunikasi_2020;
   }
   return d;
@@ -145,6 +166,9 @@ function towerStructure(data) {
 
 $("#selectKecamatan").on("change", function () {
   let kec = $(this).find(":selected").val();
+  if (kec != "") {
+    $("#selectKelurahan").prop('disabled', false);
+  }
   let da = data.filter((obj) => obj.kecamatan == kec);
   const kel = [...new Set(da.map((item) => item.kelurahan))].sort();
   $("#selectKelurahan")
@@ -167,7 +191,7 @@ $("#selectKecamatan").on("change", function () {
 // });
 
 $(
-  "select[id=selectTowerOwner], select[id=selectKecamatan], select[id=selectKelurahan], select[id=towerHeight], select[id=towerStructure], input[id=towerAddress]"
+  "select[id=selectTowerOwner], select[id=selectKecamatan], select[id=selectKelurahan], select[id=towerHeight], select[id=towerStructure], textarea[id=towerAddress]"
 ).on('keyup change', function(e) {
   let towerOwner = $("#selectTowerOwner").find(":selected").val();
   let kec = $("#selectKecamatan").find(":selected").val();
@@ -187,7 +211,7 @@ $(
   renderMapInternal(d);
 });
 
-$("input[type=radio][name=radioTahun]").change(function () {
+$("select[id=dataTahun]").change(function () {
   data = getData(this.value);
   renderOptionTowerOwner(data);
   renderKecamatan(data);

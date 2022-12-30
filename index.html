@@ -6,7 +6,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <!--[if lte IE 8]><link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
@@ -36,58 +36,62 @@
                     Menara Telekomunikasi Kota Bandung
                     <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <table>
-                    <tr>
-                        <td>Tahun</td>
-                        <td colspan="3"><input type="radio" id="r2016" name="radioTahun" value="r2016">
-                            <label for="r2016">2016</label> |
-                            <input type="radio" id="r2017" name="radioTahun" value="r2017">
-                            <label for="r2017">2017</label> |
-                            <input type="radio" id="r2018" name="radioTahun" value="r2018">
-                            <label for="r2018">2018</label> |
-                            <input type="radio" id="r2019" name="radioTahun" value="r2019">
-                            <label for="r2019">2019</label> |
-                            <input type="radio" id="r2020" name="radioTahun" value="r2020">
-                            <label for="r2020">2020</label> |
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Pemilik Menara</td>
-                        <td colspan="3"><select style="min-width: 150px;" id="selectTowerOwner" name="selectTowerOwner">
+                <div class="container mt-2">
+                    <div class="row">
+                        <div class="col-4 mb-1">
+                            <label for="towerHeight" class="form-label">Data Tahun</label>
+                            <select id="dataTahun" name="dataTahun" class="form-select form-select-sm"
+                                aria-label="Data Tahun">
                                 <option></option>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td>Kecamatan</td>
-                        <td><select style="min-width: 150px;" id="selectKecamatan" name="selectKecamatan">
-                                <option></option>
-                            </select></td>
-                        <td>Kelurahan</td>
-                        <td><select style="min-width: 150px;" id="selectKelurahan" name="selectKelurahan">
-                                <option></option>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td>Tinggi Tower</td>
-                        <td colspan="3"><select style="min-width: 150px;" id="towerHeight" name="towerHeight">
-                                <option></option>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td>Struktur Tower</td>
-                        <td colspan="3">
-                            <select style="min-width: 150px;" id="towerStructure" name="towerStructure">
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                            </select>
+                        </div>
+                        <div class="col-8 mb-1">
+                            <label for="selectTowerOwner" class="form-label">Pemilik Menara</label>
+                            <select id="selectTowerOwner" name="selectTowerOwner" class="form-select form-select-sm"
+                                aria-label="Pemilik Menara">
                                 <option></option>
                             </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Alamat Tower</td>
-                        <td colspan="3">
-                            <input type="text" name="towerAddress" id="towerAddress">
-                        </td>
-                    </tr>
-                </table>
+                        </div>
+                        <div class="col-8 mb-1">
+                            <label for="towerStructure" class="form-label">Struktur Tower</label>
+                            <select id="towerStructure" name="towerStructure" class="form-select form-select-sm"
+                                aria-label="Struktur Tower">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-4 mb-1">
+                            <label for="towerHeight" class="form-label">Tinggi Tower</label>
+                            <select id="towerHeight" name="towerHeight" class="form-select form-select-sm"
+                                aria-label="Tinggi Tower">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-6 mb-1">
+                            <label for="selectKecamatan" class="form-label">Kecamatan</label>
+                            <select id="selectKecamatan" name="selectKecamatan" class="form-select form-select-sm"
+                                aria-label="Kecamatan">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-6 mb-1">
+                            <label for="selectKelurahan" class="form-label">Kelurahan</label>
+                            <select id="selectKelurahan" name="selectKelurahan" class="form-select form-select-sm"
+                                aria-label="Kelurahan">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-12 mb-1">
+                            <label for="towerAddress" class="form-label">Alamat Tower</label>
+                            <textarea class="form-control" id="towerAddress" rows="1"></textarea>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="sidebar-pane" id="profile">
