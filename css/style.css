@@ -8,6 +8,12 @@ html, body, #map {
    /* font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif; */
 }
 
+.sidebar-content, .sidebar-tabs {
+   background: white; background: rgba(255,255,255,0.75);
+}
+.sidebar-header, .sidebar-tabs>li.active, .sidebar-tabs>ul>li.active  {
+   background: #0984e3; background: rgba(9, 132, 227, 0.75);
+}
 .text {
    font-style: italic;
    color: #AAA;
@@ -21,6 +27,7 @@ html, body, #map {
   left: 50%;
   top: 50%;
   margin: -15px 0 0 -15px;
+  background-color:#2980b9;
 }
 
 .marker-pin::after {

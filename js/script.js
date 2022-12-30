@@ -13,7 +13,7 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 let icon = L.divIcon({
   className: "custom-div-icon",
-  html: `<div style='background-color:#c30b82;' class='marker-pin'></div><i class='fa fa-broadcast-tower'></i>`,
+  html: `<div class='marker-pin'></div><i class='fa fa-broadcast-tower'></i>`,
   iconSize: [30, 33],
   iconAnchor: [15, 42],
   popupAnchor: [0, -40],
@@ -45,8 +45,8 @@ function polystyle(feature) {
   return {
     weight: 2,
     opacity: 1,
-    color: "black", //Outline color
-    fillColor: "blue",
+    color: "#d63031", //Outline color
+    fillColor: "#74b9ff",
     fillOpacity: 0.2,
   };
 }
