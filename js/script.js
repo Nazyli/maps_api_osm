@@ -315,7 +315,7 @@ function polystyle(feature) {
   return {
     weight: 2,
     opacity: 1,
-    color: "#d63031", //Outline color
+    color: "blue", //Outline color
     fillColor: "#74b9ff",
     fillOpacity: 0.2,
   };
