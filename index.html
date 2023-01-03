@@ -40,12 +40,12 @@
                     Menara Telekomunikasi Kota Bandung
                     <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
-                <div class="mt-2">
-                    <div class="alert alert-info" role="alert" style="padding: 0.3rem 0.3rem;">
-                        <h6>Filter Data</h6>
+                <div class="mt-2" id="slide_one_div">
+                    <div class="alert alert-primary filter-data-alert" role="alert">
+                        <h6> <i class='fas fa-filter'></i> Filter Data</h6>
                     </div>
-                    <div class="row">
-                        <div class="col-4 mb-1">
+                    <div class="row" style="font-weight: bold;">
+                        <div class="col-4 mb-4">
                             <label for="towerHeight" class="form-label">Data Tahun</label>
                             <select id="dataTahun" name="dataTahun" class="form-select form-select-sm"
                                 aria-label="Data Tahun">
@@ -57,72 +57,79 @@
                                 <option value="2020">2020</option>
                             </select>
                         </div>
-                        <div class="col-8 mb-1">
+                        <div class="col-8 mb-4">
                             <label for="selectTowerOwner" class="form-label">Pemilik Menara</label>
                             <select id="selectTowerOwner" name="selectTowerOwner" class="form-select form-select-sm"
                                 aria-label="Pemilik Menara">
                                 <option></option>
                             </select>
                         </div>
-                        <div class="col-8 mb-1">
+                        <div class="col-8 mb-4">
                             <label for="towerStructure" class="form-label">Struktur Tower</label>
                             <select id="towerStructure" name="towerStructure" class="form-select form-select-sm"
                                 aria-label="Struktur Tower">
                                 <option></option>
                             </select>
                         </div>
-                        <div class="col-4 mb-1">
+                        <div class="col-4 mb-4">
                             <label for="towerHeight" class="form-label">Tinggi Tower</label>
                             <select id="towerHeight" name="towerHeight" class="form-select form-select-sm"
                                 aria-label="Tinggi Tower">
                                 <option></option>
                             </select>
                         </div>
-                        <div class="col-6 mb-1">
+                        <div class="col-6 mb-4">
                             <label for="selectKecamatan" class="form-label">Kecamatan</label>
                             <select id="selectKecamatan" name="selectKecamatan" class="form-select form-select-sm"
                                 aria-label="Kecamatan">
                                 <option></option>
                             </select>
                         </div>
-                        <div class="col-6 mb-1">
+                        <div class="col-6 mb-4">
                             <label for="selectKelurahan" class="form-label">Kelurahan</label>
                             <select id="selectKelurahan" name="selectKelurahan" class="form-select form-select-sm"
                                 aria-label="Kelurahan">
                                 <option></option>
                             </select>
                         </div>
-                        <div class="col-12 mb-1">
+                        <div class="col-12 mb-4">
                             <label for="towerAddress" class="form-label">Alamat Tower</label>
                             <textarea class="form-control" id="towerAddress" rows="1"></textarea>
                         </div>
                     </div>
-                    <div class="alert alert-warning mt-3" role="alert" style="padding: 0.3rem 0.3rem;">
-                        <h6>Result</h6>
-                    </div>
-                    <div class="row">
-                        <div class="table-responsive" style="max-height: 290px;">
-                            <table id="tableData" class="table table-sm display table-custom" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th style="min-width: 150px;">Menara</th>
-                                        <th>Tinggi</th>
-                                        <th style="min-width: 80px;">Struktur</th>
-                                        <th>Kecamatan</th>
-                                        <th>Kelurahan</th>
-                                        <th>Alamat</th>
-                                        <th>Latitude</th>
-                                        <th>Longitude</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
 
+                    <div class="d-grid gap-2">
+                        <button type="button" id="slide_two_show" class="btn btn-primary"><i class='fas fa-table'></i>
+                            Lihat Data</button>
+                    </div>
+
+
+
+                </div>
+                <div class="mt-2" id="slide_two_div">
+                    <button type="button" id="slide_one_show" class="btn btn-primary"><i class="fa fa-arrow-left"
+                            aria-hidden="true"></i> Back</button>
+                    <div class="table-responsive" style="max-height: 290px;">
+                        <table id="tableData"
+                            class="table table-sm table-custom table-hover dt-responsive display nowrap" cellspacing="0"
+                            style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 150px;">Menara</th>
+                                    <th>Tinggi</th>
+                                    <th style="min-width: 80px;">Struktur</th>
+                                    <th>Kecamatan</th>
+                                    <th>Kelurahan</th>
+                                    <th>Alamat</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
             </div>
 
             <div class="sidebar-pane" id="profile">
@@ -160,6 +167,7 @@
     <script type="text/javascript" src="data/data_menara_telekomunikasi_2019.js"></script>
     <script type="text/javascript" src="data/data_menara_telekomunikasi_2020.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8"

@@ -10,40 +10,82 @@ body,
    /* font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif; */
 }
 
-.alet-info-maps{
-   background:rgba(255,255,255,  0.6);
+.alet-info-maps {
+   background: rgba(255, 255, 255, 0.6);
    border: 2px solid #FFF;
 }
-.alet-info-maps h6{
+
+.alet-info-maps h6 {
    font-weight: bold;
 }
+
+.sidebar {
+   width: 480px;
+}
+
+.sidebar.leaflet-touch {
+   border: 0;
+}
+
+.sidebar-content {
+   margin-left: 10px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+   .sidebar-left~.sidebar-map .leaflet-left {
+      left: 490px;
+   }
+}
+
+#slide_one_div {
+   position: absolute;
+   width: 90%;
+}
+
+#slide_two_div {
+   visibility: hidden;
+}
+
 .sidebar-content,
 .sidebar-tabs {
    background: #2c3e50;
-   background:rgba(44, 62, 80,  0.6);
-   color: #fff;
+   background: rgba(255, 255, 255, 0.8);
+   /* background:rgba(44, 62, 80,  0.6); */
+   /* color: #fff; */
 }
+
 .sidebar-tabs {
-   background:rgba(44, 62, 80,  0.9);
+   background: rgba(255, 255, 255, 0.9);
+   /* background:rgba(44, 62, 80,  0.9); */
+
 }
-.sidebar-tabs i{
+
+/* .sidebar-tabs i{
    color: #fff;
-}
+} */
 .sidebar-header,
 .sidebar-tabs>li.active,
 .sidebar-tabs>ul>li.active {
    background: #0984e3;
-   background: rgba(9, 132, 227, 0.75);
+   /* background: rgba(9, 132, 227, 0.75); */
 }
 
 .table-custom {
    font-size: 10px;
    background: white;
-   background: rgba(255, 255, 255, 0.85);
+   /* background: rgba(255, 255, 255, 0.85); */
 }
 
 .dataTables_info {
    font-size: 10px;
+}
+
+.filter-data-alert {
+   color: #fff;
+   background-color: #0d6efd;
+   border-color: #0d6efd;
+   padding: 0.4rem 0.4rem;
+   width: 150px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
@@ -51,19 +93,23 @@ body,
    font-size: 10px;
    /* min-width: 0.2em; !important */
 }
-table.dataTable.dtr-inline.collapsed tbody td:first-child:before, table.dataTable.dtr-inline.collapsed tbody th:first-child:before{
-   top:2px;
+
+table.dataTable.dtr-inline.collapsed tbody td:first-child:before,
+table.dataTable.dtr-inline.collapsed tbody th:first-child:before {
+   top: 2px;
    background: #0984e3;
    background: rgba(9, 132, 227, 0.75);
    border: 1px solid white;
 }
 
-.list-group-item{
+.list-group-item {
    padding: 0.3rem 1rem;
 }
-.list-group-numbered{
+
+.list-group-numbered {
    font-size: 12px;
 }
+
 .text {
    font-style: italic;
    color: #AAA;
