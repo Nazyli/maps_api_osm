@@ -49,6 +49,24 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
+var info = L.control();
+
+info.onAdd = function (map) {
+  this._div = L.DomUtil.create('div', 'alert alert-light alet-info-maps'); // create a div with a class "info"
+  this.update();
+  return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+  console.log(props)
+  this._div.innerHTML = '<h6>Menara Telekomunikasi Kota Bandung</h6>' + (props ?
+      'Total <b>' + props.total + '</b> Data,  Tahun  <b>' + props.tahun +'</b>' 
+      : 'select the year first');
+};
+
+info.addTo(map);
+
 let icon = L.divIcon({
   className: "custom-div-icon",
   html: `<div class='marker-pin'></div><i class='fa fa-broadcast-tower'></i>`,
@@ -185,8 +203,7 @@ function genereteContent(menara) {
   <div class="card" style="width: 18rem; border: none;">
   <div class="card-body" style="padding:0;">
       <h5 class="card-title" style="font-size:16px; font-weight:bolder;">`+ pemilik_menara + `</h5>
-      <h6 class="card-subtitle mb-2 text-muted" style="font-size:12px; font-weight:bold;>`+ lokasi_menara + `</h6>
-      <p class="card-text">Kec. `+ kecamatan + `, Kel. ` + kelurahan + `</p>
+      <h6 class="card-subtitle mb-2 text-muted" style="font-size:12px; font-weight:bold;">`+ lokasi_menara + `<br/> Kec. `+ kecamatan + `, Kel. ` + kelurahan + `</h6>
       <ol class="list-group list-group-numbered">
           <li class="list-group-item d-flex justify-content-between align-items-start">
               <div class="ms-2 me-auto">
@@ -389,6 +406,7 @@ $(
 
 $("select[id=dataTahun]").change(function () {
   data = getData(this.value);
+  info.update({tahun : this.value, total : data.length})
   renderOptionTowerOwner(data);
   renderKecamatan(data);
   $("#selectKelurahan")

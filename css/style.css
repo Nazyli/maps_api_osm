@@ -10,6 +10,13 @@ body,
    /* font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif; */
 }
 
+.alet-info-maps{
+   background:rgba(255,255,255,  0.6);
+   border: 2px solid #FFF;
+}
+.alet-info-maps h6{
+   font-weight: bold;
+}
 .sidebar-content,
 .sidebar-tabs {
    background: #2c3e50;
