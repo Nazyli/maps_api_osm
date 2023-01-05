@@ -3,14 +3,21 @@ let map = L.map("map").setView([-6.904744, 107.61981], 13);
 map.attributionControl.setPrefix("");
 let layerGroup = L.layerGroup().addTo(map);
 let sidebar = L.control.sidebar("sidebar").addTo(map);
+L.control.zoom({
+  position: 'bottomright'
+}).addTo(map);
 
 $(function () {
   $.fn.DataTable.ext.pager.numbers_length = 5;
   $("#tableData").DataTable({
-    searching: false,
+    dom: '<"pull-left"f><"pull-right"l>tip',
+    oLanguage: {
+      "sSearch": ""
+    },
+    // searching: false,
     info: true,
     lengthChange: false,
-    pageLength: 5,
+    pageLength: 10,
     pagingType: "simple",
     // pagingType: "first_last_numbers",
     responsive: true,
